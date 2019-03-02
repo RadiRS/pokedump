@@ -13,6 +13,10 @@ export default {
   text: '#212529',
   // backgroundColor: '#',
   primary: '#079D75',
+  yellow: '#F8EA8C',
+  tiffanyBlue: '#A4E8E0',
+  cyan: '#4CD7D0',
+  freesio: '#E1C340',
   success: '#28a745',
   error: '#dc3545'
 };

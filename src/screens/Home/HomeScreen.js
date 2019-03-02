@@ -50,8 +50,8 @@ class HomeScreen extends Component {
     this.props.getPokemons();
   }
 
-  handlePressPost = item => {
-    this.props.getPost(item);
+  handleGetPokemon = item => {
+    this.props.navigation.navigate('DetailPokemon', { item });
   };
 
   handleDeletePost = item => {
@@ -71,7 +71,7 @@ class HomeScreen extends Component {
   renderItem = ({ item }) => (
     <Pokemon
       data={item}
-      // onPress={() => this.handlePressPost(item)}
+      onPress={() => this.handleGetPokemon(item)}
       // handleDelete={() => this.handleDeletePost(item)}
       // handleUpdate={() => this.handleUpdatePost(item)}
     />
