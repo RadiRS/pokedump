@@ -5,14 +5,15 @@ import {
   createAppContainer
 } from 'react-navigation';
 // Components
-// import DrawerNavigator from '../components/drawer/DrawerNavigator';
+import DrawerNavigator from '../components/common/drawer/DrawerNavigator';
 // Screens
-import { Welcome, Another } from '../screens';
+import { Home, Welcome, Another, Splash } from '../screens';
 
 // Home Stack Navigator
 const AppHomeStackNavigator = createStackNavigator({
-  Welcome,
-  Another
+  Home
+  // Welcome,
+  // Another
 });
 
 // Profile Stack Navigator
@@ -23,36 +24,36 @@ const AppHomeStackNavigator = createStackNavigator({
 // });
 
 // App Drawer Navigator
-// const AppDrawerNavigator = createDrawerNavigator(
-//   {
-//     Home: {
-//       screen: AppHomeStackNavigator
-//     },
-//     Profile: {
-//       screen: AppProfileStackNavigator
-//     }
-//   },
-//   {
-//     drawerPosition: 'left',
-//     drawerType: 'slide',
-//     drawerWidth: 400,
-//     contentComponent: DrawerNavigator,
-//     drawerOpenRoute: 'DrawerOpen',
-//     drawerCloseRoute: 'DrawerClose',
-//     drawerToogleRoute: 'DrawerToggle'
-//   }
-// );
+const AppDrawerNavigator = createDrawerNavigator(
+  {
+    Home: {
+      screen: AppHomeStackNavigator
+    }
+    // Profile: {
+    //   screen: AppProfileStackNavigator
+    // }
+  },
+  {
+    drawerPosition: 'left',
+    drawerType: 'slide',
+    drawerWidth: 400,
+    contentComponent: DrawerNavigator,
+    drawerOpenRoute: 'DrawerOpen',
+    drawerCloseRoute: 'DrawerClose',
+    drawerToogleRoute: 'DrawerToggle'
+  }
+);
 
 // App Switch Navigator
-// const AppSwitchNavigator = createSwitchNavigator({
-//   Splash,
-//   AuthMethod,
-//   Signin,
-//   Signup,
-//   AppDrawerNavigator
-// });
+const AppSwitchNavigator = createSwitchNavigator({
+  Splash,
+  // AuthMethod,
+  // Signin,
+  // Signup,
+  AppDrawerNavigator
+});
 
 // App Container
-const AppContainer = createAppContainer(AppHomeStackNavigator);
+const AppContainer = createAppContainer(AppSwitchNavigator);
 
 export default AppContainer;

@@ -12,7 +12,7 @@ import {
   Thumbnail,
   View
 } from 'native-base';
-import NavigationServices from '../../services/navigation';
+import NavigationServices from '../../../navigator/NavigationServices';
 
 class DrawerNavigator extends Component {
   state = {
@@ -24,13 +24,13 @@ class DrawerNavigator extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.user.profile) {
-      this.setState({ profile: nextProps.user.profile });
-    }
+    // if (nextProps.user.profile) {
+    //   this.setState({ profile: nextProps.user.profile });
+    // }
   }
 
   componentDidMount() {
-    this.props.authenticatedUser();
+    // this.props.authenticatedUser();
   }
 
   keyExtractor = item => item.toString();
@@ -47,12 +47,14 @@ class DrawerNavigator extends Component {
         <Header style={styles.headers}>
           <Thumbnail
             style={styles.avatarThumbnail}
-            source={{
-              uri: this.state.profile.avatar
-            }}
+            source={
+              {
+                // uri: this.state.profile.avatar
+              }
+            }
           />
           <Text style={styles.textName}>
-            {this.state.profile.full_name || this.props.user.username}
+            {/* {this.state.profile.full_name || this.props.user.username} */}
           </Text>
           <Text
             onPress={() => NavigationServices.navigate('Profile')}
@@ -160,16 +162,18 @@ const styles = {
   }
 };
 
-const mapStateToProps = ({ user }) => ({
-  user: user.data
-});
+// const mapStateToProps = ({ user }) => ({
+//   user: user.data
+// });
 
-const mapDispatchToProps = {
-  authenticatedUser,
-  getPosts
-};
+// const mapDispatchToProps = {
+//   authenticatedUser,
+//   getPosts
+// };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DrawerNavigator);
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(DrawerNavigator);
+
+export default DrawerNavigator;

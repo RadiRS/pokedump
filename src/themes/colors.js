@@ -9,8 +9,10 @@ export default {
   transparent: 'rgba(0,0,0,0)',
   // Example colors:
   textButton: '#fff',
+  tintColor: '#fff',
   text: '#212529',
-  primary: '#007bff',
+  // backgroundColor: '#',
+  primary: '#079D75',
   success: '#28a745',
   error: '#dc3545'
 };
