@@ -7,12 +7,13 @@ import {
 // Components
 import DrawerNavigator from '../components/common/drawer/DrawerNavigator';
 // Screens
-import { Home, Splash, DetailPokemon } from '../screens';
+import { Home, Splash, DetailPokemon, AddPokemon } from '../screens';
 
 // Home Stack Navigator
 const AppHomeStackNavigator = createStackNavigator({
   Home,
-  DetailPokemon
+  DetailPokemon,
+  AddPokemon
 });
 
 // Profile Stack Navigator

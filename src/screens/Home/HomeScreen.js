@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StatusBar, FlatList } from 'react-native';
-import { Button, Icon, View, Text, Container } from 'native-base';
+import { Icon, View, Text, Container, Fab } from 'native-base';
 import { DrawerActions } from 'react-navigation';
 // Actions
 import { getPokemons } from '../../stores/actions';
@@ -93,6 +93,16 @@ class HomeScreen extends Component {
             onRefresh={() => this.handleRefresh()}
           />
         )}
+        <Fab
+          // active={this.state.active}
+          direction="up"
+          containerStyle={{}}
+          style={{ backgroundColor: Colors.primary }}
+          position="bottomRight"
+          onPress={() => this.props.navigation.navigate('AddPokemon')}
+        >
+          <Icon name="plus" type="FontAwesome" />
+        </Fab>
       </Container>
     );
   }

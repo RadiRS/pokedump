@@ -38,9 +38,11 @@ class DetailPokemon extends Component {
           <Text style={styles.name}>{name}</Text>
           <View style={styles.containerInfo}>
             <Text>{category.name}</Text>
-            {types.map(type => (
-              <Text key={type.id}>{type.name}</Text>
-            ))}
+            <View style={styles.typesContainer}>
+              {types.map(type => (
+                <Text key={type.id}>{type.name}</Text>
+              ))}
+            </View>
           </View>
         </Content>
       </Container>
@@ -61,6 +63,14 @@ const styles = {
   },
   name: {
     fontSize: 50
+  },
+  typesContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+  typeText: {
+    marginLeft: 5
   },
   containerInfo: {
     flex: 1,

@@ -17,7 +17,7 @@ class SplashScreen extends Component {
     return (
       <Container>
         <Content contentContainerStyle={styles.container}>
-          <Thumbnail large source={logo} />
+          <Thumbnail resizeMode="center" large source={logo} />
           <ActivityIndicator style={styles.spinner} size="large" />
         </Content>
       </Container>
