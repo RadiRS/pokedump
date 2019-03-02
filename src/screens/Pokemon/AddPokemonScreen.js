@@ -42,12 +42,12 @@ class AddPokemonScreen extends Component {
       ),
       headerRight: (
         <View style={{ alignItems: 'center' }}>
-          {/* {isAuthenticated ? <ButtonLabel transparent label="Save" /> : null} */}
-          <ButtonLabel
+          {isAuthenticated ? <ButtonLabel transparent label="Save" /> : null}
+          {/* <ButtonLabel
             onPress={() => handleSaveButton()}
             transparent
             label="Save"
-          />
+          /> */}
         </View>
       )
     };
@@ -73,16 +73,18 @@ class AddPokemonScreen extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    // if (nextProps.isAuthenticated) {
-    //   alert(nextProps.isAuthenticated);
-    // this.props.navigation.setParams({
-    //   isAuthenticated: nextProps.isAuthenticated
-    // });
-    // }
+    if (nextProps.error.message) {
+      alert(nextProps.error.message);
+    }
+    if (nextProps.user.data) {
+      this.props.navigation.setParams({
+        isAuthenticated: true
+      });
+      alert('adata');
+    }
   }
 
   componentDidMount() {
-    // this.props.authenticatedUser();
     this.props.getCategories();
     this.props.navigation.setParams({
       isAuthenticated: this.props.isAuthenticated
@@ -115,7 +117,7 @@ class AddPokemonScreen extends Component {
                 <Picker
                   note
                   mode="dropdown"
-                  style={{ width: 120 }}
+                  style={{ width: '100%' }}
                   selectedValue={this.state.category_id}
                   onValueChange={this.onValueChange.bind(this)}
                 >
@@ -127,7 +129,6 @@ class AddPokemonScreen extends Component {
                     />
                   ))}
                 </Picker>
-                <Input />
               </Item>
               <Item stackedLabel>
                 <Label>Latitude</Label>
@@ -148,10 +149,12 @@ class AddPokemonScreen extends Component {
         <Container>
           <Content padder contentContainerStyle={styles.container}>
             <Text style={styles.textWarn}>Opps... You have to login</Text>
-            <ButtonLabel
-              onPress={() => this.props.navigation.navigate('Signin')}
-              label="Login"
-            />
+            <View style={{ alignItems: 'center' }}>
+              <ButtonLabel
+                onPress={() => this.props.navigation.navigate('Signin')}
+                label="Login"
+              />
+            </View>
           </Content>
         </Container>
       );
@@ -170,10 +173,11 @@ const styles = {
   }
 };
 
-const mapStateToProps = ({ categories, user }) => ({
+const mapStateToProps = ({ categories, user, error }) => ({
   categories: categories.data,
   isAuthenticated: user.isAuthenticated,
-  user: user.data
+  user: user.data,
+  error
 });
 
 const mapDispatchToProps = {

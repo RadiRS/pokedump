@@ -64,7 +64,7 @@ class HomeScreen extends Component {
   };
 
   handleRefresh = () => {
-    this.props.getPosts();
+    this.props.getPokemons();
   };
 
   keyExtractor = item => item.toString();
@@ -95,7 +95,6 @@ class HomeScreen extends Component {
           />
         )}
         <Fab
-          // active={this.state.active}
           direction="up"
           containerStyle={{}}
           style={{ backgroundColor: Colors.primary }}
