@@ -13,6 +13,8 @@ import {
   View
 } from 'native-base';
 import NavigationServices from '../../../navigator/NavigationServices';
+import { _removeData } from '../../../helpers/asynStorage';
+import { logoutUser } from '../../../stores/actions';
 
 class DrawerNavigator extends Component {
   state = {
@@ -20,17 +22,20 @@ class DrawerNavigator extends Component {
     data2: ['Become a member'],
     data3: ['New post', 'Stats', 'Posts'],
     data4: ['Settings', 'Help'],
-    profile: {}
+    user: {}
   };
 
   componentWillReceiveProps(nextProps) {
-    // if (nextProps.user.profile) {
-    //   this.setState({ profile: nextProps.user.profile });
-    // }
+    if (nextProps.user) {
+      this.setState({ user: nextProps.user });
+    }
   }
 
   componentDidMount() {
     // this.props.authenticatedUser();
+    // this.props.navigation.setParams({
+    //   handleSignout: _removeData('token')
+    // });
   }
 
   keyExtractor = item => item.toString();
@@ -53,40 +58,22 @@ class DrawerNavigator extends Component {
               }
             }
           />
-          <Text style={styles.textName}>
-            {/* {this.state.profile.full_name || this.props.user.username} */}
-          </Text>
-          <Text
-            onPress={() => NavigationServices.navigate('Profile')}
-            style={styles.textSub}
-          >
-            See profile
-          </Text>
+          <Text style={styles.textName}>{this.state.user.username}</Text>
+          {this.props.user ? (
+            <Text
+              onPress={() => this.props.logoutUser()}
+              style={styles.textSub}
+            >
+              Signout
+            </Text>
+          ) : null}
         </Header>
         <Content contentContainerStyle={styles.contentContainer}>
-          <ListItem onPress={() => this.props.getPosts()} noBorder>
+          <ListItem
+            onPress={() => NavigationServices.navigate('Home')}
+            noBorder
+          >
             <Text style={styles.textList}>Home</Text>
-          </ListItem>
-          <ListItem noBorder>
-            <Text style={styles.textList}>Audio</Text>
-          </ListItem>
-          <ListItem noBorder>
-            <Text style={styles.textList}>Bookmarks</Text>
-          </ListItem>
-          <ListItem noBorder>
-            <Text style={styles.textList}>Interest</Text>
-          </ListItem>
-          <ListItem
-            onPress={() => NavigationServices.navigate('CreatePost')}
-            noBorder
-          >
-            <Text style={styles.textList}>New Post</Text>
-          </ListItem>
-          <ListItem
-            onPress={() => NavigationServices.navigate('UserPost')}
-            noBorder
-          >
-            <Text style={styles.textList}>Posts</Text>
           </ListItem>
 
           <View style={styles.listFooter}>
@@ -162,18 +149,17 @@ const styles = {
   }
 };
 
-// const mapStateToProps = ({ user }) => ({
-//   user: user.data
-// });
+const mapStateToProps = ({ user }) => ({
+  user: user.data
+});
 
-// const mapDispatchToProps = {
-//   authenticatedUser,
-//   getPosts
-// };
+const mapDispatchToProps = {
+  logoutUser
+};
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(DrawerNavigator);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DrawerNavigator);
 
-export default DrawerNavigator;
+// export default DrawerNavigator;

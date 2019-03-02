@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { _storeData, _retrieveData } from '../../';
+import { _storeData, _retrieveData } from '../../helpers/asynStorage';
 import { REST_API } from '../../services/api';
 import { GET_POKEMONS, GET_ERRORS, GET_POKEMON } from './types';
 
@@ -38,16 +38,14 @@ export const getPokemon = data => async dispatch => {
 };
 
 export const addPokemon = data => async dispatch => {
-  const userToken = await _retrieveData('token');
   axios
-    .post(`${REST_API}/post`, data, {
-      headers: { Authorization: `Bearer ${userToken}` }
-    })
+    .post(`${REST_API}/pokemons`, data)
     .then(res => {
-      dispatch(getPosts());
+      dispatch(getPokemon());
       NavigationService.navigate('Home');
     })
     .catch(err => {
+      alert(JSON.stringify(err.message));
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data

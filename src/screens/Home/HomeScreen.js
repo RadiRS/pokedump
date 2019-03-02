@@ -4,7 +4,7 @@ import { StatusBar, FlatList } from 'react-native';
 import { Icon, View, Text, Container, Fab } from 'native-base';
 import { DrawerActions } from 'react-navigation';
 // Actions
-import { getPokemons } from '../../stores/actions';
+import { getPokemons, authenticatedUser } from '../../stores/actions';
 // Components
 import ButtonIcon from '../../components/common/button/ButtonIcon';
 import Pokemon from '../../components/pokemon/Pokemon';
@@ -48,6 +48,7 @@ class HomeScreen extends Component {
 
   componentDidMount() {
     this.props.getPokemons();
+    this.props.authenticatedUser();
   }
 
   handleGetPokemon = item => {
@@ -120,7 +121,8 @@ const mapStateToProps = ({ pokemon }) => ({
 });
 
 const mapDispatchToProps = {
-  getPokemons
+  getPokemons,
+  authenticatedUser
 };
 
 export default connect(

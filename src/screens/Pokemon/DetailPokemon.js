@@ -38,11 +38,11 @@ class DetailPokemon extends Component {
           <Text style={styles.name}>{name}</Text>
           <View style={styles.containerInfo}>
             <Text>{category.name}</Text>
-            <View style={styles.typesContainer}>
+            {/* <View style={styles.typesContainer}>
               {types.map(type => (
                 <Text key={type.id}>{type.name}</Text>
               ))}
-            </View>
+            </View> */}
           </View>
         </Content>
       </Container>

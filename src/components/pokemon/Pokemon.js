@@ -15,14 +15,14 @@ class Pokemon extends Component {
           <View style={styles.info}>
             <Text style={styles.author}>Category & Types</Text>
             <Text style={styles.author}>{data.category.name}</Text>
-            <View style={styles.containerFooterPokemon}>
+            {/* <View style={styles.containerFooterPokemon}>
               <Text>Type: </Text>
               {data.types.map(type => (
                 <Text key={type.id} style={styles.textFooterPokemon}>
                   {type.name}
                 </Text>
               ))}
-            </View>
+            </View> */}
           </View>
         </View>
         {data.image_url ? (

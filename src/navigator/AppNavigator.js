@@ -7,7 +7,14 @@ import {
 // Components
 import DrawerNavigator from '../components/common/drawer/DrawerNavigator';
 // Screens
-import { Home, Splash, DetailPokemon, AddPokemon } from '../screens';
+import {
+  Home,
+  Splash,
+  DetailPokemon,
+  AddPokemon,
+  Signin,
+  Signup
+} from '../screens';
 
 // Home Stack Navigator
 const AppHomeStackNavigator = createStackNavigator({
@@ -48,9 +55,9 @@ const AppDrawerNavigator = createDrawerNavigator(
 const AppSwitchNavigator = createSwitchNavigator({
   Splash,
   // AuthMethod,
-  // Signin,
-  // Signup,
-  AppDrawerNavigator
+  AppDrawerNavigator,
+  Signin,
+  Signup
 });
 
 // App Container
