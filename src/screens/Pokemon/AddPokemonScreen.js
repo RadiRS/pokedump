@@ -42,7 +42,13 @@ class AddPokemonScreen extends Component {
       ),
       headerRight: (
         <View style={{ alignItems: 'center' }}>
-          {isAuthenticated ? <ButtonLabel transparent label="Save" /> : null}
+          {isAuthenticated ? (
+            <ButtonLabel
+              onPress={() => handleSaveButton()}
+              transparent
+              label="Save"
+            />
+          ) : null}
           {/* <ButtonLabel
             onPress={() => handleSaveButton()}
             transparent
