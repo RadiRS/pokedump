@@ -9,11 +9,13 @@ import {
   Item,
   Label,
   Input,
-  Picker
+  Picker,
+  CheckBox
 } from 'native-base';
 // Action
 import {
   getCategories,
+  getTypes,
   authenticatedUser,
   addPokemon
 } from '../../stores/actions';
@@ -62,9 +64,11 @@ class AddPokemonScreen extends Component {
   state = {
     name: '',
     image_url: '',
-    category_id: '',
     latitude: '',
-    longitude: ''
+    longitude: '',
+    user_id: '',
+    category_id: '',
+    type_ids: []
   };
 
   handleSaveButton = () => {
@@ -76,6 +80,20 @@ class AddPokemonScreen extends Component {
     this.setState({
       category_id: value
     });
+  };
+
+  handleCheckType = value => {
+    const { type_ids } = this.state;
+    let data = type_ids.find(type_id => type_id === value);
+
+    if (data) {
+      data = type_ids.filter(id => id !== value);
+      this.setState({ type_ids: data });
+    } else {
+      this.setState({
+        type_ids: [...type_ids, value]
+      });
+    }
   };
 
   componentWillReceiveProps(nextProps) {
@@ -92,16 +110,19 @@ class AddPokemonScreen extends Component {
 
   componentDidMount() {
     this.props.getCategories();
+    this.props.getTypes();
     this.props.navigation.setParams({
       isAuthenticated: this.props.isAuthenticated
     });
     this.props.navigation.setParams({
       handleSaveButton: this.handleSaveButton
     });
+    this.setState({ user_id: this.props.user.id });
   }
 
   render() {
-    const { categories, isAuthenticated } = this.props;
+    const { categories, isAuthenticated, types } = this.props;
+    const { type_ids } = this.state;
 
     if (isAuthenticated) {
       return (
@@ -135,6 +156,35 @@ class AddPokemonScreen extends Component {
                     />
                   ))}
                 </Picker>
+              </Item>
+              <Item
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center'
+                }}
+                stackedLabel
+              >
+                <Label>Types</Label>
+                {types.map(type => (
+                  <View
+                    key={type.id}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginRight: 10
+                    }}
+                  >
+                    <CheckBox
+                      checked={
+                        type_ids.find(id => id === type.id) ? true : false
+                      }
+                      onPress={() => this.handleCheckType(type.id)}
+                    />
+                    <Text style={{ marginLeft: 15, fontSize: 20 }}>
+                      {type.name}
+                    </Text>
+                  </View>
+                ))}
               </Item>
               <Item stackedLabel>
                 <Label>Latitude</Label>
@@ -179,8 +229,9 @@ const styles = {
   }
 };
 
-const mapStateToProps = ({ categories, user, error }) => ({
+const mapStateToProps = ({ categories, types, user, error }) => ({
   categories: categories.data,
+  types: types.data,
   isAuthenticated: user.isAuthenticated,
   user: user.data,
   error
@@ -188,6 +239,7 @@ const mapStateToProps = ({ categories, user, error }) => ({
 
 const mapDispatchToProps = {
   getCategories,
+  getTypes,
   authenticatedUser,
   addPokemon
 };
