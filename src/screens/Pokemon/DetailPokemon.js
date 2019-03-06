@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Content, Text, View, Thumbnail } from 'native-base';
 import { getPokemon } from '../../stores/actions';
+import { Fonts, Colors } from '../../themes';
 
 class DetailPokemon extends Component {
   state = {
@@ -37,12 +38,16 @@ class DetailPokemon extends Component {
           />
           <Text style={styles.name}>{name}</Text>
           <View style={styles.containerInfo}>
-            <Text>{category.name}</Text>
-            {/* <View style={styles.typesContainer}>
+            <Text style={styles.typeText}>Info</Text>
+            <Text style={styles.typeText}>Category : {category.name}</Text>
+            <View style={styles.typesContainer}>
+              <Text style={styles.typeText}>Types :</Text>
               {types.map(type => (
-                <Text key={type.id}>{type.name}</Text>
+                <Text key={type.id} style={styles.typeText}>
+                  {type.name}
+                </Text>
               ))}
-            </View> */}
+            </View>
           </View>
         </Content>
       </Container>
@@ -66,20 +71,21 @@ const styles = {
   },
   typesContainer: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around'
+    flexDirection: 'row'
   },
   typeText: {
-    marginLeft: 5
+    marginLeft: 5,
+    fontSize: Fonts.size.regular
   },
   containerInfo: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
     padding: 10,
     margin: 10,
     width: '100%',
     borderWidth: 2,
+    backgroundColor: Colors.darkSeaGreen,
     borderColor: '#f8f8f8',
     borderRadius: 10
   }

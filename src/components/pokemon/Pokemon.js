@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Card, Text, View, Thumbnail } from 'native-base';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import ButtonIcon from '../common/button/ButtonIcon';
+import { Colors } from '../../themes';
 
 class Pokemon extends Component {
   render() {
@@ -11,18 +12,18 @@ class Pokemon extends Component {
     return (
       <TouchableOpacity onPress={onPress} style={styles.container}>
         <View style={styles.containerInfo}>
-          <Text style={styles.title}>{data.name}</Text>
+          <Text style={styles.name}>{data.name}</Text>
           <View style={styles.info}>
-            <Text style={styles.author}>Category & Types</Text>
-            <Text style={styles.author}>{data.category.name}</Text>
-            {/* <View style={styles.containerFooterPokemon}>
-              <Text>Type: </Text>
+            <Text style={styles.textCategoryTitle}>Category & Types</Text>
+            <Text style={styles.textCategory}>{data.category.name}</Text>
+            <View style={styles.containerFooterPokemon}>
+              <Text style={styles.textTypeTitle}>Type: </Text>
               {data.types.map(type => (
-                <Text key={type.id} style={styles.textFooterPokemon}>
+                <Text key={type.id} style={styles.textType}>
                   {type.name}
                 </Text>
               ))}
-            </View> */}
+            </View>
           </View>
         </View>
         {data.image_url ? (
@@ -44,30 +45,42 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderColor: '#fff',
-    padding: 20,
+    padding: 10,
+    marginHorizontal: 10,
+    marginBottom: 10,
     height: 250,
-    borderBottomWidth: 1,
-    backgroundColor: '#fff',
-    borderBottomColor: '#8E9A95'
+    borderRadius: 10,
+    backgroundColor: Colors.darkSeaGreen
   },
   containerInfo: {
-    flex: 0.5
+    flex: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center'
     // back
   },
   info: {
     borderWidth: 2,
     padding: 10,
     width: '100%',
-    borderColor: '#f8f8f8',
+    backgroundColor: Colors.yellow,
+    borderColor: Colors.yellow,
     borderRadius: 10
   },
-  titleHeaderPokemon: {
+  nameHeaderPokemon: {
     color: '#8E9A90'
   },
-  title: {
+  name: {
     flex: 0.7,
     fontSize: 27,
-    fontFamily: 'Marat Sans DemiBold'
+    alignSelf: 'center',
+    color: Colors.beige
+    // fontFamily: 'Marat Sans DemiBold'
+  },
+  textCategoryTitle: {
+    color: Colors.textButton
+  },
+  textCategory: {
+    color: Colors.textButton
   },
   ThumbnailPokemon: {
     flex: 0.4,
@@ -78,8 +91,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
     // justifyContent: 'space-between'
   },
-  textFooterPokemon: {
-    color: '#8E9A95',
+  textTypeTitle: {
+    color: Colors.textButton
+  },
+  textType: {
+    color: Colors.textButton,
     marginLeft: 5
   }
 });

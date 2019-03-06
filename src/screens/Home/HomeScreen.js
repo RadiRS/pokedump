@@ -87,7 +87,7 @@ class HomeScreen extends Component {
           <Spinner />
         ) : (
           <FlatList
-            data={data}
+            data={data.data}
             keyExtractor={this.keyExtractor}
             renderItem={this.renderItem}
             refreshing={isLoading}
@@ -97,7 +97,7 @@ class HomeScreen extends Component {
         <Fab
           direction="up"
           containerStyle={{}}
-          style={{ backgroundColor: Colors.primary }}
+          style={{ backgroundColor: Colors.yellow }}
           position="bottomRight"
           onPress={() => this.props.navigation.navigate('AddPokemon')}
         >
@@ -110,8 +110,8 @@ class HomeScreen extends Component {
 
 const styles = {
   container: {
-    backgroundColor: '#EBF3EB',
-    padding: 0
+    backgroundColor: Colors.beige,
+    paddingTop: 10
   }
 };
 

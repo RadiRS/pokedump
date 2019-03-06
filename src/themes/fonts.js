@@ -3,9 +3,9 @@ const size = {
   h2: 34,
   h3: 30,
   input: 18,
-  regular: 17,
-  medium: 14,
-  small: 12
+  regular: 27,
+  medium: 24,
+  small: 22
 };
 
 const style = {
