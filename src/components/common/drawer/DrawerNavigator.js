@@ -75,6 +75,9 @@ class DrawerNavigator extends Component {
           >
             <Text style={styles.textList}>Home</Text>
           </ListItem>
+          <ListItem onPress={() => NavigationServices.navigate('Map')} noBorder>
+            <Text style={styles.textList}>Map</Text>
+          </ListItem>
 
           <View style={styles.listFooter}>
             <Thumbnail

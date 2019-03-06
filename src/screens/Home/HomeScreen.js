@@ -87,7 +87,7 @@ class HomeScreen extends Component {
           <Spinner />
         ) : (
           <FlatList
-            data={data.data}
+            data={data.data.sort()}
             keyExtractor={this.keyExtractor}
             renderItem={this.renderItem}
             refreshing={isLoading}

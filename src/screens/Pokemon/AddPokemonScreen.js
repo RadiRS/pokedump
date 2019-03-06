@@ -51,11 +51,6 @@ class AddPokemonScreen extends Component {
               label="Save"
             />
           ) : null}
-          {/* <ButtonLabel
-            onPress={() => handleSaveButton()}
-            transparent
-            label="Save"
-          /> */}
         </View>
       )
     };

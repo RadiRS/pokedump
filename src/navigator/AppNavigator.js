@@ -12,6 +12,7 @@ import {
   Splash,
   DetailPokemon,
   AddPokemon,
+  MapPokemon,
   Signin,
   Signup
 } from '../screens';
@@ -35,10 +36,10 @@ const AppDrawerNavigator = createDrawerNavigator(
   {
     Home: {
       screen: AppHomeStackNavigator
+    },
+    Map: {
+      screen: MapPokemon
     }
-    // Profile: {
-    //   screen: AppProfileStackNavigator
-    // }
   },
   {
     drawerPosition: 'left',
