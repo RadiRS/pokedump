@@ -72,5 +72,5 @@ export const signinUser = data => dispatch => {
 
 export const logoutUser = () => async dispatch => {
   await _removeData('token');
-  NavigationService.push('Home');
+  NavigationService.navigate('Home');
 };

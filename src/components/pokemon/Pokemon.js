@@ -35,6 +35,15 @@ class Pokemon extends Component {
             source={{ uri: data.image_url }}
           />
         ) : null}
+        <ButtonIcon
+          transparent
+          style={{
+            position: 'relative',
+            alignSelf: 'flex-start'
+          }}
+          iconName="trash"
+          onPress={handleDelete}
+        />
       </TouchableOpacity>
     );
   }

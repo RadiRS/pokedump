@@ -4,7 +4,11 @@ import { StatusBar, FlatList } from 'react-native';
 import { Icon, View, Text, Container, Fab } from 'native-base';
 import { DrawerActions } from 'react-navigation';
 // Actions
-import { getPokemons, authenticatedUser } from '../../stores/actions';
+import {
+  getPokemons,
+  authenticatedUser,
+  deletePokemon
+} from '../../stores/actions';
 // Components
 import ButtonIcon from '../../components/common/button/ButtonIcon';
 import Pokemon from '../../components/pokemon/Pokemon';
@@ -55,12 +59,12 @@ class HomeScreen extends Component {
     this.props.navigation.navigate('DetailPokemon', { item });
   };
 
-  handleDeletePost = item => {
-    this.props.deletePost(item);
+  handleDeletePokemon = item => {
+    this.props.deletePokemon(item);
   };
 
-  handleUpdatePost = item => {
-    this.props.navigation.navigate('UpdatePost', { item });
+  handleUpdatePokemon = item => {
+    this.props.navigation.navigate('UpdatePokemon', { item });
   };
 
   handleRefresh = () => {
@@ -73,7 +77,7 @@ class HomeScreen extends Component {
     <Pokemon
       data={item}
       onPress={() => this.handleGetPokemon(item)}
-      // handleDelete={() => this.handleDeletePost(item)}
+      handleDelete={() => this.handleDeletePokemon(item)}
       // handleUpdate={() => this.handleUpdatePost(item)}
     />
   );
@@ -121,7 +125,8 @@ const mapStateToProps = ({ pokemon }) => ({
 
 const mapDispatchToProps = {
   getPokemons,
-  authenticatedUser
+  authenticatedUser,
+  deletePokemon
 };
 
 export default connect(

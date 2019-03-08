@@ -2,10 +2,10 @@ import React from 'react';
 import { Button, Icon } from 'native-base';
 
 const IconButton = props => {
-  const { iconName, onPress, ...restProps } = props;
+  const { iconName, style, onPress, ...restProps } = props;
 
   return (
-    <Button onPress={onPress} style={styles.button} {...restProps}>
+    <Button onPress={onPress} style={[styles.button, style]} {...restProps}>
       <Icon style={styles.icon} name={iconName} type="FontAwesome" />
     </Button>
   );

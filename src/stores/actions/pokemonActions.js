@@ -52,3 +52,33 @@ export const addPokemon = data => async dispatch => {
       });
     });
 };
+
+export const deletePokemon = data => async dispatch => {
+  axios
+    .delete(`${REST_API}/pokemons/${data.id}`)
+    .then(res => {
+      dispatch(getPokemons());
+      NavigationService.navigate('Home');
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};
+
+export const updatePokemon = data => async dispatch => {
+  axios
+    .patch(`${REST_API}/pokemons/${data.id}`, data)
+    .then(res => {
+      dispatch(getPokemons());
+      NavigationService.navigate('Home');
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};
