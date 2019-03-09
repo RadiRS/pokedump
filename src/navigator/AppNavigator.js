@@ -21,7 +21,10 @@ import {
 const AppHomeStackNavigator = createStackNavigator({
   Home,
   DetailPokemon,
-  AddPokemon
+  AddPokemon,
+  Map: {
+    screen: MapPokemon
+  }
 });
 
 // Profile Stack Navigator
@@ -36,9 +39,6 @@ const AppDrawerNavigator = createDrawerNavigator(
   {
     Home: {
       screen: AppHomeStackNavigator
-    },
-    Map: {
-      screen: MapPokemon
     }
   },
   {
