@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { StatusBar, ActivityIndicator, ImageBackground } from 'react-native';
-import { Container, Content, Thumbnail } from 'native-base';
-
-// StatusBar.setHidden(true);
+import { StatusBar, ImageBackground } from 'react-native';
+import { Content, Thumbnail } from 'native-base';
 
 const logo = require('../../assets/img/labelicon.png');
 const backgroundImg = require('../../assets/img/splashback2.jpg');

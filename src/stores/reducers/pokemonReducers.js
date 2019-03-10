@@ -2,6 +2,7 @@ import { GET_POKEMONS, GET_POKEMON } from '../actions/types';
 
 const initialState = {
   data: [],
+  dataSearch: [],
   result: {},
   isLoading: true
 };
@@ -12,6 +13,13 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         data: payload,
+        isLoading: false
+      };
+
+    case 'SEARCH_POKEMON':
+      return {
+        ...state,
+        dataSearch: payload,
         isLoading: false
       };
 

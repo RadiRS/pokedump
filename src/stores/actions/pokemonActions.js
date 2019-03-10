@@ -4,12 +4,29 @@ import { REST_API } from '../../services/api';
 import { GET_POKEMONS, GET_ERRORS, GET_POKEMON } from './types';
 import NavigationService from '../../navigator/NavigationServices';
 
-export const getPokemons = () => async dispatch => {
+export const getPokemons = (search = '') => async dispatch => {
   axios
-    .get(`${REST_API}/pokemons`)
+    .get(`${REST_API}/pokemons?search=${search}`)
     .then(res => {
       dispatch({
         type: GET_POKEMONS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.message
+      });
+    });
+};
+
+export const searchPokemon = (search = '') => async dispatch => {
+  axios
+    .get(`${REST_API}/pokemons?search=${search}`)
+    .then(res => {
+      dispatch({
+        type: 'SEARCH_POKEMON',
         payload: res.data
       });
     })
