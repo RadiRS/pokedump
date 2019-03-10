@@ -16,14 +16,13 @@ import Spinner from '../../components/common/spinner/Spinner';
 // Style
 import { Colors } from '../../themes';
 
-StatusBar.setHidden(false);
-
 class HomeScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title: 'Home',
+      title: 'POKEMON',
       headerStyle: {
-        backgroundColor: Colors.success
+        backgroundColor: Colors.primary,
+        elevation: null
       },
       headerTintColor: Colors.tintColor,
       headerLeft: (
@@ -78,12 +77,12 @@ class HomeScreen extends Component {
       data={item}
       onPress={() => this.handleGetPokemon(item)}
       handleDelete={() => this.handleDeletePokemon(item)}
-      // handleUpdate={() => this.handleUpdatePost(item)}
     />
   );
 
   render() {
     const { data, isLoading } = this.props.pokemon;
+    StatusBar.setBackgroundColor(Colors.primary);
 
     return (
       <Container style={styles.container}>
@@ -91,7 +90,8 @@ class HomeScreen extends Component {
           <Spinner />
         ) : (
           <FlatList
-            data={data.data.sort()}
+            numColumns={2}
+            data={data.data}
             keyExtractor={this.keyExtractor}
             renderItem={this.renderItem}
             refreshing={isLoading}
@@ -101,7 +101,7 @@ class HomeScreen extends Component {
         <Fab
           direction="up"
           containerStyle={{}}
-          style={{ backgroundColor: Colors.freesio }}
+          style={{ backgroundColor: Colors.primary }}
           position="bottomRight"
           onPress={() => this.props.navigation.navigate('AddPokemon')}
         >
@@ -114,7 +114,7 @@ class HomeScreen extends Component {
 
 const styles = {
   container: {
-    backgroundColor: Colors.beige,
+    backgroundColor: Colors.secondary,
     paddingTop: 10
   }
 };

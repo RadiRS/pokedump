@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StatusBar, ActivityIndicator } from 'react-native';
+import { StatusBar, ActivityIndicator, ImageBackground } from 'react-native';
 import { Container, Content, Thumbnail } from 'native-base';
 
-StatusBar.setHidden(true);
+// StatusBar.setHidden(true);
 
-const logo = require('../../assets/img/char-pikachu.png');
+const logo = require('../../assets/img/labelicon.png');
+const backgroundImg = require('../../assets/img/splashback2.jpg');
 
 class SplashScreen extends Component {
   componentDidMount() {
@@ -15,12 +16,22 @@ class SplashScreen extends Component {
 
   render() {
     return (
-      <Container>
+      <ImageBackground
+        source={backgroundImg}
+        resizeMode="cover"
+        blurRadius={2}
+        style={{ width: '100%', height: '100%', opacity: 100 }}
+      >
+        <StatusBar hidden />
         <Content contentContainerStyle={styles.container}>
-          <Thumbnail resizeMode="center" large source={logo} />
-          <ActivityIndicator style={styles.spinner} size="large" />
+          <Thumbnail
+            source={logo}
+            resizeMode="center"
+            large
+            style={{ width: '100%' }}
+          />
         </Content>
-      </Container>
+      </ImageBackground>
     );
   }
 }
@@ -30,9 +41,6 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  spinner: {
-    color: '#fff'
   }
 };
 

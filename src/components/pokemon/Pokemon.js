@@ -11,7 +11,28 @@ class Pokemon extends Component {
 
     return (
       <TouchableOpacity onPress={onPress} style={styles.container}>
-        <View style={styles.containerInfo}>
+        {data.image_url ? (
+          <Thumbnail
+            square
+            large
+            resizeMode="center"
+            style={styles.ThumbnailPokemon}
+            source={{ uri: data.image_url }}
+          />
+        ) : null}
+        <Text style={styles.name}>{data.name}</Text>
+        <View
+          style={{
+            width: '80%',
+            borderWidth: 2,
+            borderRadius: 5,
+            padding: 5,
+            marginTop: 2,
+            borderColor: Colors.darkSeaGreen,
+            backgroundColor: Colors.lightGreen
+          }}
+        />
+        {/* <View style={styles.containerInfo}>
           <Text style={styles.name}>{data.name}</Text>
           <View style={styles.info}>
             <Text style={styles.textCategoryTitle}>Category & Types</Text>
@@ -25,25 +46,16 @@ class Pokemon extends Component {
               ))}
             </View>
           </View>
-        </View>
-        {data.image_url ? (
-          <Thumbnail
-            square
-            large
-            resizeMode="center"
-            style={styles.ThumbnailPokemon}
-            source={{ uri: data.image_url }}
-          />
-        ) : null}
-        <ButtonIcon
+        </View> */}
+        {/* <ButtonIcon
           transparent
           style={{
-            position: 'relative',
-            alignSelf: 'flex-start'
+            position: 'absolute',
+            alignSelf: 'flex-end'
           }}
           iconName="trash"
           onPress={handleDelete}
-        />
+        /> */}
       </TouchableOpacity>
     );
   }
@@ -51,15 +63,17 @@ class Pokemon extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    // flexDirection: 'row',
+    flex: 1,
+    // justifyContent: 'space-between',
+    alignItems: 'center',
     borderColor: '#fff',
     padding: 10,
     marginHorizontal: 10,
     marginBottom: 10,
-    height: 250,
-    borderRadius: 10,
-    backgroundColor: Colors.success
+    height: 200,
+    borderRadius: 10
+    // backgroundColor: Colors.success
   },
   containerInfo: {
     flex: 0.5,
@@ -79,10 +93,16 @@ const styles = StyleSheet.create({
     color: '#8E9A90'
   },
   name: {
-    flex: 0.7,
+    // flex: 0.7,
     fontSize: 27,
     alignSelf: 'center',
-    color: Colors.beige
+    color: Colors.textGrey,
+    width: '80%',
+    textAlign: 'center',
+    borderBottomWidth: 5,
+    borderBottomLeftRadius: 3,
+    borderBottomRightRadius: 3,
+    borderBottomColor: Colors.textGrey
     // fontFamily: 'Marat Sans DemiBold'
   },
   textCategoryTitle: {
@@ -92,9 +112,9 @@ const styles = StyleSheet.create({
     color: Colors.textButton
   },
   ThumbnailPokemon: {
-    flex: 0.4,
-    width: 200,
-    height: 200
+    // flex: 0.4,
+    width: 100,
+    height: 100
   },
   containerFooterPokemon: {
     flexDirection: 'row'

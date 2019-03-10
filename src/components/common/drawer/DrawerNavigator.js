@@ -108,7 +108,7 @@ const styles = {
     // paddingLeft: 10
   },
   headers: {
-    backgroundColor: Colors.success,
+    backgroundColor: Colors.primary,
     height: 200,
     flexDirection: 'column',
     paddingLeft: 30

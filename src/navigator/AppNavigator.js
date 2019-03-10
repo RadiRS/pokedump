@@ -20,6 +20,7 @@ import {
 
 // Home Stack Navigator
 const AppHomeStackNavigator = createStackNavigator({
+  // Splash,
   Home,
   DetailPokemon,
   AddPokemon,
