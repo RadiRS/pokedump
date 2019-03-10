@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Container, Content, Text, View, Thumbnail } from 'native-base';
 import { getPokemon } from '../../stores/actions';
 import { Fonts, Colors } from '../../themes';
+import IconButton from '../../components/common/button/ButtonIcon';
 
 class DetailPokemon extends Component {
   state = {
@@ -23,7 +24,16 @@ class DetailPokemon extends Component {
     this.props.getPokemon(item);
   }
 
+  handlePressEdit = item => {
+    this.props.navigation.navigate('UpdatePokemon', { item });
+  };
+
+  handlePressMap = () => {
+    this.props.navigation.navigate('Map');
+  };
+
   render() {
+    const { item } = this.props.navigation.state.params;
     let { name, image_url, category, types } = this.state;
 
     return (
@@ -38,6 +48,28 @@ class DetailPokemon extends Component {
           />
           <Text style={styles.name}>{name}</Text>
           <View style={styles.containerInfo}>
+            <View
+              style={{
+                zIndex: 1,
+                backgroundColor: Colors.freesio,
+                borderRadius: 20,
+                flexDirection: 'row',
+                position: 'absolute',
+                top: 10,
+                right: 10
+              }}
+            >
+              <IconButton
+                transparent
+                iconName="map"
+                onPress={() => this.handlePressMap()}
+              />
+              <IconButton
+                transparent
+                iconName="pencil"
+                onPress={() => this.handlePressEdit(item)}
+              />
+            </View>
             <Text style={styles.typeText}>Info</Text>
             <Text style={styles.typeText}>Category : {category.name}</Text>
             <View style={styles.typesContainer}>
@@ -67,6 +99,7 @@ const styles = {
     width: 200
   },
   name: {
+    color: Colors.freesio,
     fontSize: 50
   },
   typesContainer: {
@@ -75,19 +108,15 @@ const styles = {
   },
   typeText: {
     marginLeft: 5,
+    color: Colors.beige,
     fontSize: Fonts.size.regular
   },
   containerInfo: {
     flex: 1,
-    justifyContent: 'center',
-    // alignItems: 'center',
+    // justifyContent: 'center',
     padding: 10,
-    margin: 10,
     width: '100%',
-    borderWidth: 2,
-    backgroundColor: Colors.darkSeaGreen,
-    borderColor: '#f8f8f8',
-    borderRadius: 10
+    backgroundColor: Colors.success
   }
 };
 

@@ -15,6 +15,7 @@ import {
 import NavigationServices from '../../../navigator/NavigationServices';
 import { _removeData } from '../../../helpers/asynStorage';
 import { logoutUser } from '../../../stores/actions';
+import { Colors } from '../../../themes';
 
 class DrawerNavigator extends Component {
   state = {
@@ -107,7 +108,7 @@ const styles = {
     // paddingLeft: 10
   },
   headers: {
-    backgroundColor: '#079D75',
+    backgroundColor: Colors.success,
     height: 200,
     flexDirection: 'column',
     paddingLeft: 30

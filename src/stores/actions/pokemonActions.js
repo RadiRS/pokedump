@@ -69,10 +69,13 @@ export const deletePokemon = data => async dispatch => {
 };
 
 export const updatePokemon = data => async dispatch => {
+  let item = data;
   axios
     .patch(`${REST_API}/pokemons/${data.id}`, data)
     .then(res => {
+      // alert(JSON.stringify(res.data));
       dispatch(getPokemons());
+      // NavigationService.navigate('UpdatePokemon', { item });
       NavigationService.navigate('Home');
     })
     .catch(err => {

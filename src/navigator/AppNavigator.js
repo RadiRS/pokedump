@@ -12,6 +12,7 @@ import {
   Splash,
   DetailPokemon,
   AddPokemon,
+  UpdatePokemon,
   MapPokemon,
   Signin,
   Signup
@@ -22,6 +23,7 @@ const AppHomeStackNavigator = createStackNavigator({
   Home,
   DetailPokemon,
   AddPokemon,
+  UpdatePokemon,
   Map: {
     screen: MapPokemon
   }

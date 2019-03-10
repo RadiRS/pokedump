@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     height: 250,
     borderRadius: 10,
-    backgroundColor: Colors.darkSeaGreen
+    backgroundColor: Colors.success
   },
   containerInfo: {
     flex: 0.5,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     padding: 10,
     width: '100%',
-    backgroundColor: Colors.yellow,
+    backgroundColor: Colors.freesio,
     borderColor: Colors.yellow,
     borderRadius: 10
   },

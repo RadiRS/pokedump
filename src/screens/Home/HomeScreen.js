@@ -23,7 +23,7 @@ class HomeScreen extends Component {
     return {
       title: 'Home',
       headerStyle: {
-        backgroundColor: Colors.primary
+        backgroundColor: Colors.success
       },
       headerTintColor: Colors.tintColor,
       headerLeft: (
@@ -101,7 +101,7 @@ class HomeScreen extends Component {
         <Fab
           direction="up"
           containerStyle={{}}
-          style={{ backgroundColor: Colors.yellow }}
+          style={{ backgroundColor: Colors.freesio }}
           position="bottomRight"
           onPress={() => this.props.navigation.navigate('AddPokemon')}
         >
