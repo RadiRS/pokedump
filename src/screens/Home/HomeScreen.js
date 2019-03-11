@@ -86,7 +86,10 @@ class HomeScreen extends Component {
   };
 
   handleGetPokemon = item => {
-    this.props.navigation.navigate('DetailPokemon', { item });
+    this.props.navigation.navigate('DetailPokemon', {
+      item,
+      handleDeletePokemon: this.handleDeletePokemon
+    });
     this.setModalVisible(false);
   };
 

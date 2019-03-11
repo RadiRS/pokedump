@@ -16,13 +16,6 @@ export default (state = initialState, { type, payload }) => {
         isLoading: false
       };
 
-    case 'SEARCH_POKEMON':
-      return {
-        ...state,
-        dataSearch: payload,
-        isLoading: false
-      };
-
     case GET_POKEMON:
       return {
         ...state,

@@ -26,7 +26,8 @@ class DetailPokemon extends Component {
     name: '',
     image_url: 'img',
     category: {},
-    types: []
+    types: [],
+    user_id: ''
   };
 
   componentWillReceiveProps(nextProps) {
@@ -49,6 +50,7 @@ class DetailPokemon extends Component {
   };
 
   render() {
+    const { handleDeletePokemon } = this.props.navigation.state.params;
     const { item } = this.props.navigation.state.params;
     let { name, image_url, category, types } = this.state;
 
@@ -90,11 +92,20 @@ class DetailPokemon extends Component {
                 iconName="map"
                 onPress={() => this.handlePressMap()}
               />
-              <ButtonIcon
-                transparent
-                iconName="pencil"
-                onPress={() => this.handlePressEdit(item)}
-              />
+              {this.props.user.id === this.state.user_id ? (
+                <>
+                  <ButtonIcon
+                    transparent
+                    iconName="pencil"
+                    onPress={() => this.handlePressEdit(item)}
+                  />
+                  <ButtonIcon
+                    transparent
+                    iconName="trash"
+                    onPress={() => handleDeletePokemon(item)}
+                  />
+                </>
+              ) : null}
             </View>
           </ImageBackground>
           <View
@@ -270,8 +281,9 @@ const styles = {
   }
 };
 
-const mapStateToProps = ({ pokemon }) => ({
-  pokemon: pokemon.result
+const mapStateToProps = ({ pokemon, user }) => ({
+  pokemon: pokemon.result,
+  user: user.data
 });
 
 const mapDispatchToProps = { getPokemon };

@@ -24,6 +24,7 @@ import { Colors } from '../../themes';
 // Components
 import ButtonLabel from '../../components/common/button/ButtonLabel';
 import ButtonIcon from '../../components/common/button/ButtonIcon';
+import PickImage from '../../components/pickImage/PickImage';
 
 class AddPokemonScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -91,6 +92,10 @@ class AddPokemonScreen extends Component {
     }
   };
 
+  handleImagePick = value => {
+    this.setState({ image_url: value });
+  };
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.error.message) {
       alert(nextProps.error.message);
@@ -123,6 +128,15 @@ class AddPokemonScreen extends Component {
       return (
         <Container>
           <Content padder>
+            <View
+              style={{
+                flex: 1,
+                height: 300
+              }}
+            >
+              <PickImage handleImagePick={this.handleImagePick} />
+            </View>
+
             <Form>
               <Item stackedLabel>
                 <Label>Name</Label>
