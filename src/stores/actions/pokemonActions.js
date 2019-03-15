@@ -80,39 +80,39 @@ export const addPokemon = data => async dispatch => {
   // alert(JSON.stringify(body));
   // const image_url = await axios.post(`${REST_API}/upload`, body);
 
-  const image = new FormData();
-  image.append('file_upload', {
-    uri: data.image_url.uri,
-    type: 'image/jpeg', // or photo.type
-    name: data.image_url.fileName
-  });
+  // const image = new FormData();
+  // image.append('file_upload', {
+  //   uri: data.image_url.uri,
+  //   type: 'image/jpeg', // or photo.type
+  //   name: data.image_url.fileName
+  // });
 
-  axios({
-    method: 'POST',
-    url: `${REST_API}/upload`,
-    data: image,
-    config: { headers: { 'Content-Type': 'multipart/form-data' } }
-  })
-    .then(response => {
-      // console.warn(JSON.stringify(response.data.imageUrl.fileName));
-      alert(JSON.stringify(response.data.image_url.fileName));
-    })
-    .catch(err => {
-      alert(JSON.stringify(err));
-    });
-
-  // axios
-  //   .post(`${REST_API}/pokemons`, data)
-  //   .then(res => {
-  //     dispatch(getPokemons());
-  //     NavigationService.navigate('Home');
+  // axios({
+  //   method: 'POST',
+  //   url: `${REST_API}/upload`,
+  //   data: image,
+  //   config: { headers: { 'Content-Type': 'multipart/form-data' } }
+  // })
+  //   .then(response => {
+  //     // console.warn(JSON.stringify(response.data.imageUrl.fileName));
+  //     alert(JSON.stringify(response.data.image_url.fileName));
   //   })
   //   .catch(err => {
-  //     dispatch({
-  //       type: GET_ERRORS,
-  //       payload: err.response.data
-  //     });
+  //     alert(JSON.stringify(err));
   //   });
+
+  axios
+    .post(`${REST_API}/pokemons`, data)
+    .then(res => {
+      dispatch(getPokemons());
+      NavigationService.navigate('Home');
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    });
 };
 
 export const deletePokemon = data => async dispatch => {
