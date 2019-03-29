@@ -18,5 +18,5 @@ Project akhir bootcamp **Arkademy**. Membuat aplikasi Pokedump dengan ketentuan 
 ### Demo :
 
 <div align="center">
-  <img src="assets/docs/Demo.gif"/>
+  <img src="src/assets/docs/Demo.gif"/>
 </div>
